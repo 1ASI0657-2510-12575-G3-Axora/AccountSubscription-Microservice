@@ -85,7 +85,7 @@ namespace DittoBox.API
 
         public static void RegisterHandlers(WebApplicationBuilder builder)
         {
-            /* UserProfile handlers */
+            /* AccountSubscription handlers */
             builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowAll", corsPolicyBuilder =>
@@ -105,7 +105,8 @@ namespace DittoBox.API
             builder.Services.AddScoped<IDowngradeSubscriptionCommandHandler, DowngradeSubscriptionCommandHandler>();
             builder.Services.AddScoped<IUpgradeSubscriptionCommandHandler, UpgradeSubscriptionCommandHandler>();
             builder.Services.AddScoped<IGetSubscriptionDetailsQueryHandler, GetSubscriptionDetailsQueryHandler>();
-            builder.Services.AddScoped<ICancelSubscriptionCommandHandler, CancelSubscriptionCommandHandler>();
+            builder.Services.AddScoped<ICreateAccountCommandHandler, CreateAccountCommandHandler>();
+            builder.Services.AddScoped<IGetSubscriptionUsageQueryHandler, GetSubscriptionUsageQueryHandler>();
 
         }
 
