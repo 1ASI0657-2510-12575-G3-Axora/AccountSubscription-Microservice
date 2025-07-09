@@ -1,3 +1,4 @@
+using DittoBox.API.AccountSubscription.Application.Resources;
 using DittoBox.API.AccountSubscription.Domain.Models.Aggregates;
 
 namespace DittoBox.API.AccountSubscription.Domain.Services.Application
@@ -8,5 +9,6 @@ namespace DittoBox.API.AccountSubscription.Domain.Services.Application
 		public Task<Account?> GetAccount(int accountId);
 		public Task UpdateAccountRepresentative(int accountId, int representativeId);
 		public Task UpdateAccountBusinessInformation(int accountId, string businessName, string businessId);
+		Task<AccountUsageResource> GetSubscriptionUsage(int accountId);
     }
 }

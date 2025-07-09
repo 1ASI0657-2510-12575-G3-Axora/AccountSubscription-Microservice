@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres-accountsubscription:
+    image: postgres:16
+    container_name: postgres_accountsubscription_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: axora_account_db
+    ports:
+      - "5436:5432"
+    volumes:
+      - postgres_accountsubscription_data:/var/lib/postgresql/data
+
+  account-subscription:
+    build:
+      context: .
+      dockerfile: AccountSubscription-Microservice/Dockerfile
+    ports:
+      - "8084:8080"
+    environment:
+      - POSTGRES_CONNECTION_STRING=Host=postgres-accountsubscription;Port=5432;Database=axora_account_db;Username=postgres;Password=12345678
+      - RESET_DATABASE=true
+    depends_on:
+      - postgres-accountsubscription
+    restart: always
+
+volumes:
+  postgres_accountsubscription_data:
